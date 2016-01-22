@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+
+<extension point="org.eclipse.ui.menus">
+
+<menuContribution locationURI="toolbar:org.eclipse.ui.console.ConsoleView">
+	<command commandId="nik.expand.button.commandId" tooltip="Show full command line" />
+</menuContribution>
+
+</extension>
+
+
+
+   <extension
+         point="org.eclipse.ui.commands">
+
+               <category
+            name="nik.expand.button"
+            description="Show command line"
+            id="nik.expand.button" />
+
+      <command
+      description="Show full command line"
+            name="C"
+            defaultHandler="showcommandline.ShowCommandLine"
+            categoryId="nik.expand.button"
+            id="nik.expand.button.commandId" />
+
+</extension>
+
+
+
+</plugin>
