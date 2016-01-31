@@ -1,4 +1,4 @@
-package showcommandline;
+package nik.showcommandline;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -11,10 +11,10 @@ import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.debug.core.model.RuntimeProcess;
 import org.eclipse.debug.internal.ui.views.console.ProcessConsole;
 import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.IConsoleView;
 import org.eclipse.ui.console.IOConsoleOutputStream;
-import org.eclipse.ui.internal.console.ConsoleView;
-
 import net.sf.jremoterun.utilities.JrrClassUtils;
+import java.io.Closeable;
 
 public class ShowCommandLine implements IHandler {
 	private static final Logger log = Logger.getLogger(ShowCommandLine.class.getName());
@@ -47,20 +47,23 @@ public class ShowCommandLine implements IHandler {
 	}
 
 	public Object executeImpl(ExecutionEvent event) throws Exception {
-		final ConsoleView consoleView = (ConsoleView) ConsoleUtils.getWorkbenchPage()
+		final IConsoleView consoleView = (IConsoleView) ConsoleUtils.getWorkbenchPage()
 				.findView(ConsoleUtils.consoleViewId);
 		IConsole console = consoleView.getConsole();
-		if(console==null) {
+		if (console == null) {
 			log.info("can't find current console");
+			return null;
+		}
+		if (!(console instanceof ProcessConsole)) {
 			return null;
 		}
 		final ProcessConsole console2 = (ProcessConsole) console;
 		IOConsoleOutputStream new_name = null;
 		String textToAdd = "";
 		{
-			java.util.List fieldValue = (List) JrrClassUtils.getFieldValue(console2, "openStreams");
-			log.info(fieldValue + "");
-			for (Object object : fieldValue) {
+			List<Closeable> openStreams = (List<Closeable>) JrrClassUtils.getFieldValue(console2, "openStreams");
+			log.info(openStreams + "");
+			for (Closeable object : openStreams) {
 				if (object instanceof IOConsoleOutputStream) {
 					new_name = (IOConsoleOutputStream) object;
 					break;
@@ -90,22 +93,19 @@ public class ShowCommandLine implements IHandler {
 		} else {
 			new_name.write(textToAdd);
 		}
-		// final IConsoleManager consoleManager = ConsolePlugin.getDefault()
-		// .getConsoleManager();
-		// final IConsole[] consoles = consoleManager.getConsoles();
 
 		return null;
 	}
 
 	@Override
 	public boolean isEnabled() {
-//		log.info("isEnabled");
+		// log.info("isEnabled");
 		return !inFly;
 	}
 
 	@Override
 	public boolean isHandled() {
-//		log.info("isHandled2");
+		// log.info("isHandled2");
 		return !inFly;
 	}
 

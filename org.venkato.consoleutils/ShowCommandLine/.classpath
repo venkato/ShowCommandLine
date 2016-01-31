@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="libs/cglib-nodep-3.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/jremoterun.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/jrrutilities.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins">
+		<accessrules>
+			<accessrule kind="accessible" pattern="**"/>
+		</accessrules>
+	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="bin/"/>
 	<classpathentry kind="lib" path="backup/"/>
+	<classpathentry kind="lib" path="C:/Users/nick/.gradle/caches/modules-2/files-2.1/org.eclipse.swt.win32.win32/x86/3.3.0-v3346/d3a93fb660669f0a0427aea63f4ea716f5f9f168/x86-3.3.0-v3346.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

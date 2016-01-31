@@ -1,4 +1,4 @@
-package showcommandline;
+package nik.showcommandline;
 
 import java.util.logging.Logger;
 

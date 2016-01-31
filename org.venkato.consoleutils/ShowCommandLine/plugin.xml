@@ -16,19 +16,110 @@
    <extension
          point="org.eclipse.ui.commands">
 
-               <category
+      <category
             name="nik.expand.button"
             description="Show command line"
             id="nik.expand.button" />
 
       <command
-      description="Show full command line"
+      		description="Show full command line"
             name="C"
-            defaultHandler="showcommandline.ShowCommandLine"
+            defaultHandler="nik.showcommandline.ShowCommandLine"
             categoryId="nik.expand.button"
             id="nik.expand.button.commandId" />
 
+      <command
+
+            name="Run last launched configuration"
+            defaultHandler="nik.showcommandline.LastRunList"
+            categoryId="nik.expand.button"
+            id="nik.expand.showlastRun.commandId" />
+
+      <command
+            name="Jrr open declaration"
+            defaultHandler="nik.eclipsehelpersjrr.OpenDeclarationHandler"
+            categoryId="nik.expand.button"
+            id="JrrOpendeclation" />
+
+
+     <command
+            name="Jrr assign resutl to var"
+            defaultHandler="nik.eclipsehelpersjrr.CreateVarHandler"
+            categoryId="nik.expand.button"
+            id="JrrCreateVar" />
 </extension>
+
+<extension
+	 point="org.eclipse.ui.bindings">
+ <key
+
+       commandId="nik.expand.showlastRun.commandId"
+       schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+       sequence="ALT+F10"/>
+
+ <key
+       commandId="JrrOpendeclation"
+       contextId="org.eclipse.jdt.ui.javaEditorScope"
+       schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+       sequence="M2+F6"/>
+
+   <key
+         commandId="JrrCreateVar"
+         contextId="org.eclipse.jdt.ui.javaEditorScope"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="M2+F7"/>
+
+
+
+ <scheme
+	  name="RunLastRun"
+	  description="Run last launched configuration scheme"
+	  id="nik.runlastconfiration" />
+</extension>
+
+
+
+<!--
+-->
+
+
+
+ <extension point="org.eclipse.jdt.ui.javaCompletionProposalComputer"
+   id="JrrClassMemberProposal"
+   name="JrrClassMemberProposal">
+   <javaCompletionProposalComputer
+         needsSortingAfterFiltering="true"
+         activate="true"
+         categoryId="org.eclipse.jdt.ui.JavaAllCompletionProposalComputer"
+         class="nik.eclipsehelpersjrr.ClassMemberProposalRight">
+      <partition type="__java_string"/>
+   </javaCompletionProposalComputer>
+ </extension>
+
+
+
+
+
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="ForcePush.resourceContributions"
+            objectClass="org.eclipse.core.resources.IResource">
+         <filter
+               name="projectPersistentProperty"
+               value="org.eclipse.team.core.repository=org.eclipse.egit.core.GitProvider">
+         </filter>
+
+         <action
+               class="nik.git.forcepush.GitPushForce"
+               id="git.forcepush.OpenConsoleActionDelegate"
+               label="Push force"
+               menubarPath="team.main/group9">
+         </action>
+      </objectContribution>
+   </extension>
 
 
 
