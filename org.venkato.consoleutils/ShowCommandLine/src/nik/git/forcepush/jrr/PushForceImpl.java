@@ -2,7 +2,6 @@ package nik.git.forcepush.jrr;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.StringWriter;
 import java.util.logging.Level;
 
@@ -10,12 +9,8 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.InvalidRemoteException;
-import org.eclipse.jgit.api.errors.TransportException;
 import org.eclipse.jgit.pgm.CommandRef;
 import org.eclipse.jgit.pgm.TextBuiltin;
-import org.eclipse.jgit.transport.PushResult;
 import org.eclipse.jgit.util.io.ThrowingPrintWriter;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;

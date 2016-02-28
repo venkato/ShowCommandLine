@@ -12,6 +12,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="bin/"/>
 	<classpathentry kind="lib" path="backup/"/>
-	<classpathentry kind="lib" path="C:/Users/nick/.gradle/caches/modules-2/files-2.1/org.eclipse.swt.win32.win32/x86/3.3.0-v3346/d3a93fb660669f0a0427aea63f4ea716f5f9f168/x86-3.3.0-v3346.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/eclipse-swt"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

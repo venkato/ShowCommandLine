@@ -9,7 +9,6 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.egit.core.Activator;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -17,6 +16,8 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.ide.ResourceUtil;
+
+import nik.git.forcepush.GetConfiguredRepositories;
 
 class SelectedRepositoryComputer {
 
@@ -28,7 +29,10 @@ class SelectedRepositoryComputer {
 		this.selection = selection instanceof IStructuredSelection ? (IStructuredSelection) selection
 				: StructuredSelection.EMPTY;
 		this.activePart = activePart;
-		this.configuredRepositoryLocations = Activator.getDefault().getRepositoryUtil().getConfiguredRepositories();
+		// sometimes this plugin can't see Activator class from git pluging, so
+		// adding abstraction to redefining implementation
+		this.configuredRepositoryLocations = GetConfiguredRepositories.getConfiguredRepositories
+				.getConfiguredRepositories();
 	}
 
 	File compute() {
