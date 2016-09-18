@@ -6,7 +6,7 @@ import org.eclipse.jgit.transport.URIish;
 
 import sun.reflect.Reflection;
 
-public class MyPushHook extends MapSupport {
+public class MyPushHook2 extends MapSupport {
 	private static final Logger log = Logger.getLogger(Reflection.getCallerClass(1).getName());
 
 	public static String enabledUtlPush = "";

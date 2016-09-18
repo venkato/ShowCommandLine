@@ -249,18 +249,18 @@ public class JrrOpenMemberUtils {
 			// }
 		if (importType.length() < 3) {
 			Class loadClass;
-			try {
-				loadClass = PrimiteClassesUtils.loadPrimitiveClass(importType);
-				if (loadClass != null) {
-					if (loadClass.isArray()) {
-						importType = loadClass.getComponentType() + "[]";
-					} else {
-						importType = loadClass.getName();
-					}
+			// try {
+			loadClass = PrimiteClassesUtils.loadPrimitiveClass(importType);
+			if (loadClass != null) {
+				if (loadClass.isArray()) {
+					importType = loadClass.getComponentType() + "[]";
+				} else {
+					importType = loadClass.getName();
 				}
-			} catch (ClassNotFoundException e) {
-				LOG.warning(e + "");
 			}
+			// } catch (ClassNotFoundException e) {
+			// LOG.warning(e + "");
+			// }
 		} else {
 			importType = className.replace(";", "");
 			importType = importType.substring(1);

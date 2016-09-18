@@ -5,11 +5,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-import nik.git.forcepush.jrr.PushForceImpl;
+import nik.git.forcepush.jrr.PushForceImpl2;
 
 public class GitPushForce implements IObjectActionDelegate {
 
-	public static IObjectActionDelegate delegate=new PushForceImpl();
+	public static IObjectActionDelegate delegate=new PushForceImpl2();
 
 
 	public GitPushForce() {
